@@ -5,35 +5,35 @@ This dataset provides comprehensive multi-environment trial (MET) results for ma
 
 ## Data and Code Availability
 
-* **Repository name:** Zenodo ^^
-* **Data identification number:** 10.5281/zenodo.14445186 ^^
-* **Direct URL to data:** [https://zenodo.org/records/14678148](https://zenodo.org/records/14678148) ^^
-* **Code files:** corrs_CO.R, corrs_C1.R, Visualizations.ipynb ^^
+* **Repository name:** Zenodo 
+* **Data identification number:** 10.5281/zenodo.14445186 
+* **Direct URL to data:** [https://zenodo.org/records/14678148](https://zenodo.org/records/14678148) 
+* **Code files:** corrs_CO.R, corrs_C1.R, Visualizations.ipynb 
 
 ## Code Usage
 
 ### R Scripts
 
-The R scripts (corrs_CO.R and corrs_C1.R) analyze the correlation between yield performance and environmental variables using mixed models. ^^ They perform the following steps:
+The R scripts (corrs_CO.R and corrs_C1.R) analyze the correlation between yield performance and environmental variables using mixed models.  They perform the following steps:
 
-1. Fit mixed-effects models using environmental and genotype data. ^^
-2. Extract Best Linear Unbiased Predictions (BLUPs) for genotype-environment interactions. ^^
-3. Calculate environmental averages (e.g., vapor pressure deficit) for comparison. ^^
-4. Plot trendlines to illustrate yield relationships with environmental conditions, annotating R² values for model fit. ^^
+1. Fit mixed-effects models using environmental and genotype data. 
+2. Extract Best Linear Unbiased Predictions (BLUPs) for genotype-environment interactions. 
+3. Calculate environmental averages (e.g., vapor pressure deficit) for comparison. 
+4. Plot trendlines to illustrate yield relationships with environmental conditions, annotating R² values for model fit. 
 
 ### iPython Notebook
 
-The iPython notebook (Visualizations.ipynb) describes the dataset structure and performs Principal Component Analysis (PCA) to identify key variables influencing yield and environmental interactions. ^^ It also visualizes PCA results. ^^
+The iPython notebook (Visualizations.ipynb) describes the dataset structure and performs Principal Component Analysis (PCA) to identify key variables influencing yield and environmental interactions.  It also visualizes PCA results. 
 
 ## Requirements
 
-* R (version 3.x or 4.x) with the following packages: ^^
-  * lme4 (v1.1.x) ^^
-  * sommer (v3.x) ^^
-  * metan (v1.x) ^^
-  * ggplot2 ^^
-* Python (version 3.11.10) with the necessary libraries for PCA and visualization. ^^
+* R (version 3.x or 4.x) with the following packages: 
+  * lme4 (v1.1.x) 
+  * sommer (v3.x) 
+  * metan (v1.x) 
+  * ggplot2 
+* Python (version 3.11.10) with the necessary libraries for PCA and visualization. 
 
 ## License
 
-Data are publicly available under a Creative Commons Attribution 4.0 International license. ^^ No access restrictions. ^^
+Data are publicly available under a Creative Commons Attribution 4.0 International license.  No access restrictions. 
