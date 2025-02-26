@@ -47,9 +47,9 @@ plot_trendlines <- function(data, title_label) {
   r2_data <- data %>%
     group_by(GEN) %>%
     summarise(
-      r2 = round(summary(lm(Yield ~ VPD_mean, data = cur_data()))$r.squared, 2),
+      r2 = round(summary(lm(Yield ~ VPD_mean, data = .))$r.squared, 2),
       VPD_max = max(VPD_mean, na.rm = TRUE),
-      Yield_pred = predict(lm(Yield ~ VPD_mean, data = cur_data()), newdata = data.frame(VPD_mean = max(VPD_mean, na.rm = TRUE))),
+      Yield_pred = predict(lm(Yield ~ VPD_mean, data = .), newdata = data.frame(VPD_mean = max(VPD_mean, na.rm = TRUE))),
       .groups = "drop"
     )
   
@@ -61,28 +61,29 @@ plot_trendlines <- function(data, title_label) {
     labs(x = "VPD (kPa)", y = "Yield (t/ha)", color = "GEN") +
     theme_bw() +
     theme(
-      legend.background = element_blank(),  # Remove legend background
-      legend.title = element_text(size = 12, color = "black"),
+      legend.background = element_blank(), # Remove legend background
+      legend.title = element_text(size = 12, color = "black", hjust = 0.5), # Combined and corrected legend.title
       legend.text = element_text(size = 10, color = "black"),
       axis.title = element_text(size = 14, color = "black"),
       axis.text = element_text(size = 12, color = "black"),
       plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
       plot.margin = margin(10, 10, 10, 10),
-      legend.position = "topright",  # Initial placement; will adjust below
+      legend.position = "topright", # Initial placement; will adjust below
       legend.box.just = "right"
     ) +
     # Add R² annotation for each GEN using geom_label_repel for nice placement
     geom_label_repel(
       data = r2_data,
       aes(x = VPD_max, y = Yield_pred, label = paste0("R²=", sprintf("%.2f", r2))),
-      nudge_x = 0.05 * max(data$VPD_mean, na.rm = TRUE),  # Adjust horizontal position
+      nudge_x = 0.05 * max(data$VPD_mean, na.rm = TRUE), # Adjust horizontal position
       direction = "y",
       hjust = 0,
       size = 3,
       color = "black",
       fill = "white",
       segment.color = "grey50",
-      show.legend = FALSE
+      show.legend = FALSE,
+      max.overlaps = 30 # Increased max.overlaps to handle potential label overlap
     ) +
     # Add plot label (A, B, C)
     annotate(
@@ -99,10 +100,9 @@ plot_trendlines <- function(data, title_label) {
     # Adjust legend position to be inside the plot area
     guides(color = guide_legend(override.aes = list(fill = NA))) +
     theme(
-      legend.position = c(0.15, 0.90),  # Position legend inside the plot (x, y from 0 to 1)
+      legend.position = c(0.15, 0.90),# Position legend inside the plot (x, y from 0 to 1)
       legend.justification = c("right", "top"),
-      legend.background = element_rect(fill = alpha("white", 0.5),color = "black"),
-      legend.title.align = 0.5
+      legend.background = element_rect(fill = alpha("white", 0.5),color = "black")
     )
 }
 
@@ -111,7 +111,6 @@ plot_c1 <- plot_trendlines(c1_data, "A")
 plot_c2 <- plot_trendlines(c2_data, "B")
 plot_other <- plot_trendlines(other_data, "C")
 
-# Arrange the plots side by side
 combined_plot <- grid.arrange(plot_c1, plot_c2, plot_other, ncol = 3)
 
 # Save the combined plot to a file
